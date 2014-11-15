@@ -6,6 +6,18 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		72FE80BC1A17E76E00672D8F /* Exceptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72FE80B31A17E76E00672D8F /* Exceptions.cpp */; };
+		72FE80BD1A17E76E00672D8F /* Graphs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72FE80B41A17E76E00672D8F /* Graphs.cpp */; };
+		72FE80BE1A17E76E00672D8F /* Leet_Word_Ladder-II.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72FE80B51A17E76E00672D8F /* Leet_Word_Ladder-II.cpp */; };
+		72FE80BF1A17E76E00672D8F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72FE80B61A17E76E00672D8F /* main.cpp */; };
+		72FE80C01A17E76E00672D8F /* postfix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72FE80B71A17E76E00672D8F /* postfix.cpp */; };
+		72FE80C11A17E76E00672D8F /* Queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72FE80B81A17E76E00672D8F /* Queue.cpp */; };
+		72FE80C21A17E76E00672D8F /* stacks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72FE80B91A17E76E00672D8F /* stacks.cpp */; };
+		72FE80C31A17E76E00672D8F /* string_functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72FE80BA1A17E76E00672D8F /* string_functions.cpp */; };
+		72FE80C41A17E76E00672D8F /* swap2numbers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72FE80BB1A17E76E00672D8F /* swap2numbers.cpp */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		721BC39719424DB000F4DB40 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -20,8 +32,24 @@
 
 /* Begin PBXFileReference section */
 		721BC39919424DB000F4DB40 /* Practice */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Practice; sourceTree = BUILT_PRODUCTS_DIR; };
-		72FE80A51A17E11600672D8F /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = src; path = ../src; sourceTree = "<group>"; };
-		72FE80A61A17E13F00672D8F /* headers */ = {isa = PBXFileReference; lastKnownFileType = folder; name = headers; path = ../headers; sourceTree = "<group>"; };
+		72FE80A91A17E76600672D8F /* CommonHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonHeaders.h; sourceTree = "<group>"; };
+		72FE80AA1A17E76600672D8F /* Exceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exceptions.h; sourceTree = "<group>"; };
+		72FE80AB1A17E76600672D8F /* Graphs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Graphs.h; sourceTree = "<group>"; };
+		72FE80AC1A17E76600672D8F /* Leet_Word_Ladder-II.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Leet_Word_Ladder-II.h"; sourceTree = "<group>"; };
+		72FE80AD1A17E76600672D8F /* postfix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = postfix.h; sourceTree = "<group>"; };
+		72FE80AE1A17E76600672D8F /* Practice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Practice.h; sourceTree = "<group>"; };
+		72FE80AF1A17E76600672D8F /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
+		72FE80B01A17E76600672D8F /* stacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stacks.h; sourceTree = "<group>"; };
+		72FE80B11A17E76600672D8F /* StacksImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StacksImpl.h; sourceTree = "<group>"; };
+		72FE80B31A17E76E00672D8F /* Exceptions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Exceptions.cpp; sourceTree = "<group>"; };
+		72FE80B41A17E76E00672D8F /* Graphs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Graphs.cpp; sourceTree = "<group>"; };
+		72FE80B51A17E76E00672D8F /* Leet_Word_Ladder-II.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "Leet_Word_Ladder-II.cpp"; sourceTree = "<group>"; };
+		72FE80B61A17E76E00672D8F /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		72FE80B71A17E76E00672D8F /* postfix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = postfix.cpp; sourceTree = "<group>"; };
+		72FE80B81A17E76E00672D8F /* Queue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Queue.cpp; sourceTree = "<group>"; };
+		72FE80B91A17E76E00672D8F /* stacks.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stacks.cpp; sourceTree = "<group>"; };
+		72FE80BA1A17E76E00672D8F /* string_functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string_functions.cpp; sourceTree = "<group>"; };
+		72FE80BB1A17E76E00672D8F /* swap2numbers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = swap2numbers.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,8 +66,8 @@
 		721BC39019424DB000F4DB40 = {
 			isa = PBXGroup;
 			children = (
-				72FE80A61A17E13F00672D8F /* headers */,
-				72FE80A51A17E11600672D8F /* src */,
+				72FE80B21A17E76E00672D8F /* src */,
+				72FE80A81A17E76600672D8F /* headers */,
 				721BC39A19424DB000F4DB40 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,6 +78,40 @@
 				721BC39919424DB000F4DB40 /* Practice */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		72FE80A81A17E76600672D8F /* headers */ = {
+			isa = PBXGroup;
+			children = (
+				72FE80A91A17E76600672D8F /* CommonHeaders.h */,
+				72FE80AA1A17E76600672D8F /* Exceptions.h */,
+				72FE80AB1A17E76600672D8F /* Graphs.h */,
+				72FE80AC1A17E76600672D8F /* Leet_Word_Ladder-II.h */,
+				72FE80AD1A17E76600672D8F /* postfix.h */,
+				72FE80AE1A17E76600672D8F /* Practice.h */,
+				72FE80AF1A17E76600672D8F /* Queue.h */,
+				72FE80B01A17E76600672D8F /* stacks.h */,
+				72FE80B11A17E76600672D8F /* StacksImpl.h */,
+			);
+			name = headers;
+			path = ../headers;
+			sourceTree = "<group>";
+		};
+		72FE80B21A17E76E00672D8F /* src */ = {
+			isa = PBXGroup;
+			children = (
+				72FE80B31A17E76E00672D8F /* Exceptions.cpp */,
+				72FE80B41A17E76E00672D8F /* Graphs.cpp */,
+				72FE80B51A17E76E00672D8F /* Leet_Word_Ladder-II.cpp */,
+				72FE80B61A17E76E00672D8F /* main.cpp */,
+				72FE80B71A17E76E00672D8F /* postfix.cpp */,
+				72FE80B81A17E76E00672D8F /* Queue.cpp */,
+				72FE80B91A17E76E00672D8F /* stacks.cpp */,
+				72FE80BA1A17E76E00672D8F /* string_functions.cpp */,
+				72FE80BB1A17E76E00672D8F /* swap2numbers.cpp */,
+			);
+			name = src;
+			path = ../src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -103,6 +165,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72FE80C41A17E76E00672D8F /* swap2numbers.cpp in Sources */,
+				72FE80BE1A17E76E00672D8F /* Leet_Word_Ladder-II.cpp in Sources */,
+				72FE80BD1A17E76E00672D8F /* Graphs.cpp in Sources */,
+				72FE80BF1A17E76E00672D8F /* main.cpp in Sources */,
+				72FE80C21A17E76E00672D8F /* stacks.cpp in Sources */,
+				72FE80C31A17E76E00672D8F /* string_functions.cpp in Sources */,
+				72FE80C11A17E76E00672D8F /* Queue.cpp in Sources */,
+				72FE80C01A17E76E00672D8F /* postfix.cpp in Sources */,
+				72FE80BC1A17E76E00672D8F /* Exceptions.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

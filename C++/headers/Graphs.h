@@ -42,11 +42,11 @@ namespace DS {
         Graph();
         ~Graph();
         
-        bool isEmpty();
+        bool isEmpty() const;
         //We don't check for duplicate vertex
         void addVertex(int data);
         void addEdge(int srcData, int dstData, int cost);
-        int getCostForEdge(int srcData, int dstData);
+        int getCostForEdge(int srcData, int dstData) const;
         void displayGraph();
         void dfsTraversal();
         void bfsTraversal();

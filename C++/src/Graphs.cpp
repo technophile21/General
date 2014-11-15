@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Manik Singhal. All rights reserved.
 //
 
-#include "Graphs.h"
 #include <stack>
 #include <queue>
+#include "Graphs.h"
 
 //Refer for better approach: http://codereview.stackexchange.com/questions/36464/coding-and-printing-a-graph
 
@@ -17,11 +17,11 @@ namespace DS {
     //Declaring Vertex and Edge here will hide their structure from client.
     struct Vertex;
 
-    typedef struct Edge {
+    struct Edge {
         int cost;
         struct Vertex* srcVertex;
         struct Vertex* dstVertex;
-    }Edge;
+    };
 
     typedef std::list<Edge*> EdgeList;
     class Vertex {
@@ -29,9 +29,9 @@ namespace DS {
         Vertex() {
             bVisited = false;
         }
-        int data;
+        int data = 0;
         EdgeList edgeList;
-        bool bVisited;
+        bool bVisited = false;   //In C++11 we can initialize member directly
     };
         
     Graph::Graph() {
@@ -39,21 +39,25 @@ namespace DS {
     }
 
     Graph::~Graph() {
-        for (std::list<Vertex*>::const_iterator iter = _verticesList.begin(); iter != _verticesList.end(); ++iter) {
-            Vertex * vertex = *iter;
+        for(Vertex* vertex: _verticesList) {
             std::list<Edge*> edgeList = vertex->edgeList;
-            for (std::list<Edge*>::const_iterator edgeIter = edgeList.begin(); edgeIter != edgeList.end(); ++edgeIter) {
-                delete *edgeIter;
+            for(Edge *edge : edgeList) {
+                delete edge;
             }
             
             delete vertex;
         }
     }
 
-    bool Graph::isEmpty() {
+    // Const Correctness: http://www.cprogramming.com/tutorial/const_correctness.html
+    bool Graph::isEmpty() const {
         return _verticesList.empty();
     }
 
+    /* Exception safety:
+     Here, you are allocating memory for a Vertex, then you try to add it at the end of _verticesList. When inserting an element in an std::list, a new node should be allocated. Unless otherwise specified, std::list uses std::allocator to allocate new memory, which is based on new and delete. In other words, if there is no more free memory to allocate for the new node, new will throw an std::bad_alloc exception and insert will rethrow the exception. In addVertex, if insert throws, then the newly allocated Vertex (node) will not be freed. This is a memory leak, and so your method fails to provide the basic exception safety (also known as no-leak guarantee).
+     
+     */
     void Graph::addVertex(int data) {
         Vertex* node = new Vertex();
         node->data = data;
@@ -79,8 +83,9 @@ namespace DS {
         DataVertexMap::const_iterator srcIter = _dataVertexMap.find(srcData);
         DataVertexMap::const_iterator dstIter = _dataVertexMap.find(dstData);
         
-        Vertex* srcVertex = NULL;
-        Vertex* dstVertex = NULL;
+        //Use nullptr
+        Vertex* srcVertex = nullptr;
+        Vertex* dstVertex = nullptr;
         if(srcIter == _dataVertexMap.end())
             srcVertex = addAndGetVertex(srcData);
         else
@@ -100,7 +105,7 @@ namespace DS {
         
     }
 
-    int Graph::getCostForEdge(int srcData, int dstData) {
+    int Graph::getCostForEdge(int srcData, int dstData) const {
         DataVertexMap::const_iterator srcIter = _dataVertexMap.find(srcData);
         DataVertexMap::const_iterator dstIter = _dataVertexMap.find(dstData);
         
@@ -108,8 +113,9 @@ namespace DS {
             return -1;
         
         EdgeList edgeList = (*(srcIter->second))->edgeList;
-        for (EdgeList::const_iterator iter = edgeList.begin(); iter != edgeList.end(); ++iter) {
-            Edge* edge  = *iter;
+        
+        //C++11: Range based for loop
+        for (const Edge* edge : edgeList) {
             if(edge->dstVertex == *(dstIter->second))
                 return edge->cost;
         }
@@ -132,8 +138,7 @@ namespace DS {
             vertex->bVisited = true;
             printf("%d\n", vertex->data);
             const EdgeList edgeList = vertex->edgeList;
-            for (EdgeList::const_iterator iter = edgeList.begin(); iter != edgeList.end(); ++iter) {
-                Edge *edge = *iter;
+            for (const Edge* edge : edgeList) {
                 Vertex *dstVertex = edge->dstVertex;
                 if(!dstVertex->bVisited)
                     vertexStack.push(dstVertex);
@@ -158,8 +163,7 @@ namespace DS {
             vertex->bVisited = true;
             printf("%d\n", vertex->data);
             const EdgeList edgeList = vertex->edgeList;
-            for (EdgeList::const_iterator iter = edgeList.begin(); iter != edgeList.end(); ++iter) {
-                Edge *edge = *iter;
+            for (const Edge* edge : edgeList) {
                 Vertex *dstVertex = edge->dstVertex;
                 if(!dstVertex->bVisited)
                     //we can also have a check here if vertex is already in queue, but since we are using pointer if a duplicate vertex is encountered later then it will have bVisited true.
