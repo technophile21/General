@@ -144,6 +144,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -176,6 +177,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};
@@ -183,7 +185,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../headers/";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../thirdparty/Boost/ $(SRCROOT)/../headers/";
 			};
 			name = Debug;
 		};
@@ -192,7 +194,7 @@
 			buildSettings = {
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../headers/";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../thirdparty/Boost/ $(SRCROOT)/../headers/";
 			};
 			name = Release;
 		};
