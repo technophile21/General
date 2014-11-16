@@ -12,6 +12,8 @@
 #include <list>
 #include <map>
 
+#include "boost/shared_ptr.hpp"
+
 /* Exposing Vertex and Edge is not good as we might want to change graph implementation in future. So client shouldn't know this
 struct Vertex;
 
@@ -28,8 +30,8 @@ typedef struct Vertex {
 
 namespace DS {
     
-    struct Vertex;
-    typedef std::list<Vertex*> VerticesList;
+    class Vertex;
+    typedef std::list<boost::shared_ptr<Vertex>> VerticesList;
     typedef std::map<int, VerticesList::const_iterator> DataVertexMap;
     class Graph {
         
@@ -37,7 +39,7 @@ namespace DS {
         DataVertexMap _dataVertexMap;
         
         //TODO: Need some design to have this function internal only and not exposed to client
-        Vertex* addAndGetVertex(int data);
+        boost::shared_ptr<Vertex> addAndGetVertex(int data);
     public:
         Graph();
         ~Graph();
@@ -46,7 +48,7 @@ namespace DS {
         //We don't check for duplicate vertex
         void addVertex(int data);
         void addEdge(int srcData, int dstData, int cost);
-        int getCostForEdge(int srcData, int dstData) const;
+        int getCostForEdge(int srcData, int dstData);
         void displayGraph();
         void dfsTraversal();
         void bfsTraversal();

@@ -9,21 +9,23 @@
 #include <stack>
 #include <queue>
 #include "Graphs.h"
+#include "boost/scoped_ptr.hpp"
+#include "boost/weak_ptr.hpp"
 
 //Refer for better approach: http://codereview.stackexchange.com/questions/36464/coding-and-printing-a-graph
 
 namespace DS {
 
     //Declaring Vertex and Edge here will hide their structure from client.
-    struct Vertex;
+    class Vertex;
 
     struct Edge {
         int cost;
-        struct Vertex* srcVertex;
-        struct Vertex* dstVertex;
+        boost::weak_ptr<Vertex> srcVertex;
+        boost::weak_ptr<Vertex> dstVertex;
     };
 
-    typedef std::list<Edge*> EdgeList;
+    typedef std::list<boost::shared_ptr<Edge>> EdgeList;
     class Vertex {
     public:
         Vertex() {
@@ -39,14 +41,14 @@ namespace DS {
     }
 
     Graph::~Graph() {
-        for(Vertex* vertex: _verticesList) {
+        /*for(Vertex* vertex: _verticesList) {
             std::list<Edge*> edgeList = vertex->edgeList;
             for(Edge *edge : edgeList) {
                 delete edge;
             }
             
             delete vertex;
-        }
+        }*/
     }
 
     // Const Correctness: http://www.cprogramming.com/tutorial/const_correctness.html
@@ -59,7 +61,7 @@ namespace DS {
      
      */
     void Graph::addVertex(int data) {
-        Vertex* node = new Vertex();
+        boost::shared_ptr<Vertex> node(new Vertex());
         node->data = data;
         node->edgeList.clear();
         
@@ -67,8 +69,8 @@ namespace DS {
         _dataVertexMap.insert(std::make_pair(data, iter));
     }
 
-    Vertex* Graph::addAndGetVertex(int data) {
-        Vertex* node = new Vertex();
+    boost::shared_ptr<Vertex> Graph::addAndGetVertex(int data) {
+        boost::shared_ptr<Vertex> node(new Vertex());
         node->data = data;
         node->edgeList.clear();
         
@@ -83,9 +85,8 @@ namespace DS {
         DataVertexMap::const_iterator srcIter = _dataVertexMap.find(srcData);
         DataVertexMap::const_iterator dstIter = _dataVertexMap.find(dstData);
         
-        //Use nullptr
-        Vertex* srcVertex = nullptr;
-        Vertex* dstVertex = nullptr;
+        boost::shared_ptr<Vertex> srcVertex(nullptr);
+        boost::shared_ptr<Vertex> dstVertex(nullptr);
         if(srcIter == _dataVertexMap.end())
             srcVertex = addAndGetVertex(srcData);
         else
@@ -96,16 +97,17 @@ namespace DS {
         else
             dstVertex = *(dstIter->second);
         
-        Edge* newEdge = new Edge();
+        boost::shared_ptr<Edge> newEdge(new Edge());
         newEdge->cost = cost;
         newEdge->srcVertex = srcVertex;
         newEdge->dstVertex = dstVertex;
         
+        //list will make a copy of newEdge shared ptr
         srcVertex->edgeList.push_back(newEdge);
         
     }
 
-    int Graph::getCostForEdge(int srcData, int dstData) const {
+    int Graph::getCostForEdge(int srcData, int dstData) {
         DataVertexMap::const_iterator srcIter = _dataVertexMap.find(srcData);
         DataVertexMap::const_iterator dstIter = _dataVertexMap.find(dstData);
         
@@ -115,8 +117,9 @@ namespace DS {
         EdgeList edgeList = (*(srcIter->second))->edgeList;
         
         //C++11: Range based for loop
-        for (const Edge* edge : edgeList) {
-            if(edge->dstVertex == *(dstIter->second))
+        for (boost::shared_ptr<Edge> edge : edgeList) {
+            //Notice the comparison syntax
+            if((edge->dstVertex).lock().get()  == (*(dstIter->second)).get())
                 return edge->cost;
         }
         
@@ -128,18 +131,22 @@ namespace DS {
     }
 
     void Graph::dfsTraversal() {
-        std::stack<Vertex*> vertexStack;
+        std::stack<boost::weak_ptr<Vertex>> vertexStack;
         vertexStack.push(_verticesList.front());
         
         while(!vertexStack.empty())
         {
-            Vertex *vertex = vertexStack.top();
+            boost::shared_ptr<Vertex> vertex = vertexStack.top().lock();
             vertexStack.pop();
+            
+            assert(vertex.get() != nullptr);
+            
             vertex->bVisited = true;
             printf("%d\n", vertex->data);
             const EdgeList edgeList = vertex->edgeList;
-            for (const Edge* edge : edgeList) {
-                Vertex *dstVertex = edge->dstVertex;
+            for (boost::shared_ptr<Edge> edge : edgeList) {
+                boost::shared_ptr<Vertex> dstVertex = (edge->dstVertex).lock();
+                assert(dstVertex.get() != nullptr);
                 if(!dstVertex->bVisited)
                     vertexStack.push(dstVertex);
             }
@@ -150,21 +157,24 @@ namespace DS {
     }
     
     void Graph::bfsTraversal() {
-        std::queue<Vertex*> verticesQueue;
+        std::queue<boost::weak_ptr<Vertex>> verticesQueue;
         verticesQueue.push(_verticesList.front());
         
         while(!verticesQueue.empty())
         {
-            Vertex *vertex = verticesQueue.front();
+            boost::shared_ptr<Vertex> vertex = (verticesQueue.front()).lock();
             verticesQueue.pop();
+            
+            assert(vertex.get() != nullptr);
             
             if(vertex->bVisited) continue;
             
             vertex->bVisited = true;
             printf("%d\n", vertex->data);
             const EdgeList edgeList = vertex->edgeList;
-            for (const Edge* edge : edgeList) {
-                Vertex *dstVertex = edge->dstVertex;
+            for (boost::shared_ptr<Edge> edge : edgeList) {
+                boost::shared_ptr<Vertex> dstVertex = (edge->dstVertex).lock();
+                assert(dstVertex.get() != nullptr);
                 if(!dstVertex->bVisited)
                     //we can also have a check here if vertex is already in queue, but since we are using pointer if a duplicate vertex is encountered later then it will have bVisited true.
                     verticesQueue.push(dstVertex);
