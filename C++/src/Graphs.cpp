@@ -332,5 +332,54 @@ namespace DS {
                    edge->cost);
         return;
     }
+    
+    boost::shared_ptr<Edge> getMinEdge(EdgeList& edgeList) {
+        int min = INFINITY;
+        boost::shared_ptr<Edge> minEdge;
+        for(boost::shared_ptr<Edge> edge : edgeList) {
+            if(edge->cost < min) {
+                min = edge->cost;
+                minEdge = edge;
+            }
+        }
+        
+        return minEdge;
+    }
+    
+    void Graph::primMST() {
+        EdgeList mstEdgeList;
+        EdgeList potentialEdgeList;
+        //VertexKeyMap keyMap;
+        /*for(boost::shared_ptr<Vertex> vertex : _verticesList) {
+            keyMap.insert(std::make_pair(vertex, INFINITY));
+        }*/
+        
+        //keyMap[_verticesList.front()] = 0;
+        boost::shared_ptr<Vertex> firstVertex = _verticesList.front();
+        potentialEdgeList.insert(potentialEdgeList.begin(), firstVertex->edgeList.begin(), firstVertex->edgeList.end());
+        
+        while(mstEdgeList.size() < _verticesList.size() - 1) {
+            boost::shared_ptr<Edge> minEdge = getMinEdge(potentialEdgeList);
+            mstEdgeList.push_front(minEdge);
+            potentialEdgeList.remove(minEdge);
+            (minEdge->srcVertex).lock()->bVisited = true;
+            (minEdge->dstVertex).lock()->bVisited = true;
+            EdgeList dstVertexEdgeList = (minEdge->dstVertex).lock()->edgeList;
+            for(boost::shared_ptr<Edge> edge : dstVertexEdgeList) {
+                if(!(edge->dstVertex).lock()->bVisited)
+                    potentialEdgeList.push_front(edge);
+            }
+        }
+        
+        //TODO: set all bvisited false
+        
+        // print the contents of result[] to display the built MST
+        printf("Following are the edges in the constructed MST\n");
+        for (boost::shared_ptr<Edge> edge : mstEdgeList)
+            printf("%d -- %d == %d\n", (edge->srcVertex).lock()->data, (edge->dstVertex).lock()->data,
+                   edge->cost);
+        return;
+
+    }
 
 }

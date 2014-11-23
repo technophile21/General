@@ -55,6 +55,7 @@ namespace DS {
         
         void findShortestPath(int srcData, int dstData);
         void kruskalMST();
+        void primMST();
     };
     
 } //End namespace Graphs
