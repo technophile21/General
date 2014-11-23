@@ -52,6 +52,9 @@ namespace DS {
         void displayGraph();
         void dfsTraversal();
         void bfsTraversal();
+        
+        void findShortestPath(int srcData, int dstData);
+        void kruskalMST();
     };
     
 } //End namespace Graphs

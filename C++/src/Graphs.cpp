@@ -8,10 +8,13 @@
 
 #include <stack>
 #include <queue>
+#include <set>
+#include <map>
 #include "Graphs.h"
 #include "boost/scoped_ptr.hpp"
 #include "boost/weak_ptr.hpp"
 
+#define INFINITY 99999
 //Refer for better approach: http://codereview.stackexchange.com/questions/36464/coding-and-printing-a-graph
 
 namespace DS {
@@ -26,6 +29,7 @@ namespace DS {
     };
 
     typedef std::list<boost::shared_ptr<Edge>> EdgeList;
+    
     class Vertex {
     public:
         Vertex() {
@@ -112,7 +116,7 @@ namespace DS {
         DataVertexMap::const_iterator dstIter = _dataVertexMap.find(dstData);
         
         if(srcIter == _dataVertexMap.end() || dstIter == _dataVertexMap.end())
-            return -1;
+            return INFINITY;
         
         EdgeList edgeList = (*(srcIter->second))->edgeList;
         
@@ -123,7 +127,7 @@ namespace DS {
                 return edge->cost;
         }
         
-        return -1;
+        return INFINITY;
     }
         
     void Graph::displayGraph() {
@@ -183,6 +187,150 @@ namespace DS {
         
         //TODO: mark visited back to false for each node.
 
+    }
+    
+    void Graph::findShortestPath(int srcData, int dstData) {
+        DataVertexMap::const_iterator srcIter = _dataVertexMap.find(srcData);
+        DataVertexMap::const_iterator dstIter = _dataVertexMap.find(dstData);
+        if(srcIter == _dataVertexMap.end() || dstIter == _dataVertexMap.end())
+            assert(false);
+    
+        boost::shared_ptr<Vertex> srcVertex(*(srcIter->second));
+        boost::shared_ptr<Vertex> dstVertex(*(dstIter->second));
+        
+        struct VertexInfo {
+            bool bGotMinDistance = false;
+            boost::weak_ptr<Vertex> precedingVertex;
+            int distanceFromSource = INFINITY;
+        };
+        
+        boost::shared_ptr<Vertex> currentVertex = srcVertex;
+        
+        typedef std::map<boost::shared_ptr<Vertex>, VertexInfo> VertexInfoMap;
+        VertexInfoMap vertexInfoMap;
+        for(boost::shared_ptr<Vertex> vertex : _verticesList) {
+            VertexInfo info;
+            if(vertex.get() == srcVertex.get()) {
+                info.bGotMinDistance = true;
+                info.distanceFromSource = 0;
+                info.precedingVertex = boost::weak_ptr<Vertex> ();
+            }
+            vertexInfoMap.insert(std::make_pair(vertex, info));
+        }
+        
+        
+        while(currentVertex.get() != dstVertex.get()) {
+            VertexInfo& curVertexInfo = vertexInfoMap[currentVertex];
+            curVertexInfo.bGotMinDistance = true;
+            boost::shared_ptr<Vertex> minDistVertex = currentVertex;
+            int curMinDist  = INFINITY;
+            for(auto iter = vertexInfoMap.begin(); iter != vertexInfoMap.end(); ++iter) {
+                boost::shared_ptr<Vertex> vertex = iter->first;
+                VertexInfo& vertexInfo = iter->second;
+                if(!vertexInfo.bGotMinDistance) {
+                    int distFromCurToVertex = getCostForEdge(currentVertex->data, vertex->data);
+                    if(vertexInfo.distanceFromSource > distFromCurToVertex + curVertexInfo.distanceFromSource) {
+                        vertexInfo.distanceFromSource = distFromCurToVertex + curVertexInfo.distanceFromSource;
+                        vertexInfo.precedingVertex = currentVertex;
+                    }
+                
+                    if(vertexInfo.distanceFromSource < curMinDist) {
+                        curMinDist = vertexInfo.distanceFromSource;
+                        minDistVertex = vertex;
+                    }
+                }
+            }
+            currentVertex = minDistVertex;
+            //WRONG: A reference variable cannot be reassigned
+            //curVertexInfo = vertexInfoMap[currentVertex];//vertexInfoMap.find(currentVertex)->second;
+        }
+        
+        for(boost::shared_ptr<Vertex> vertex = dstVertex; vertex.get() != srcVertex.get(); ) {
+            printf("%d\n", vertex->data);
+            VertexInfo info = vertexInfoMap[vertex];
+            vertex = info.precedingVertex.lock();
+        }
+        printf("%d\n", srcVertex->data);
+        
+    }
+    
+    class CompareEdge {
+    public:
+        bool operator() (const boost::shared_ptr<Edge> & e1, const boost::shared_ptr<Edge> & e2) const{
+            if(e1->cost == e2->cost)
+                return e1.get() < e2.get();  //similar to default comparator less<T>
+            
+            return e1->cost < e2->cost;
+        }
+    };
+    
+    typedef std::map<boost::shared_ptr<Vertex>, boost::shared_ptr<Vertex>> ParentMap;
+    // A utility function to find the subset of an element i
+    boost::shared_ptr<Vertex> find(const ParentMap& parentMap, const boost::shared_ptr<Vertex>& vertex)
+    {
+        ParentMap::const_iterator iter = parentMap.find(vertex);
+        if (!(iter->second).get())
+            return vertex;
+        return find(parentMap, iter->second);
+    }
+    
+    // A utility function to do union of two subsets
+    void Union(ParentMap& parentMap, const boost::shared_ptr<Vertex>& x, const boost::shared_ptr<Vertex>& y)
+    {
+        const boost::shared_ptr<Vertex> xset = find(parentMap, x);
+        const boost::shared_ptr<Vertex> yset = find(parentMap, y);
+        parentMap[x] = y;
+    }
+    
+    
+    // The main function to check whether a given graph contains cycle or not
+    bool isCycle(const VerticesList& verticesList, const EdgeList& allEdgeList)
+    {
+        // Allocate memory for creating V subsets
+        ParentMap parent;
+        
+        for(boost::shared_ptr<Vertex> vertex : verticesList) {
+            parent.insert(std::make_pair(vertex, nullptr));
+        }
+        
+        // Iterate through all edges of graph, find subset of both
+        // vertices of every edge, if both subsets are same, then there is
+        // cycle in graph.
+        for(boost::shared_ptr<Edge> edge : allEdgeList)
+        {
+            boost::shared_ptr<Vertex> x = find(parent, (edge->srcVertex).lock());
+            boost::shared_ptr<Vertex> y = find(parent, (edge->dstVertex).lock());
+            
+            if (x.get() == y.get())
+                return true;
+            
+            Union(parent, x, y);
+        }
+        return false;
+    }
+    
+    void Graph::kruskalMST() {
+        std::set<boost::shared_ptr<Edge>, CompareEdge> allEdgeList;
+        for(boost::shared_ptr<Vertex> vertex : _verticesList) {
+            EdgeList vertexEdgeList = vertex->edgeList;
+            allEdgeList.insert(vertexEdgeList.begin(), vertexEdgeList.end());
+        }
+        
+        EdgeList mstEdgeList;
+        for(boost::shared_ptr<Edge> edge : allEdgeList) {
+            if(mstEdgeList.size() == _verticesList.size() - 1) break;
+            mstEdgeList.push_front(edge);
+            if(isCycle(_verticesList, mstEdgeList)) {
+                mstEdgeList.pop_front();
+            }
+        }
+        
+        // print the contents of result[] to display the built MST
+        printf("Following are the edges in the constructed MST\n");
+        for (boost::shared_ptr<Edge> edge : mstEdgeList)
+            printf("%d -- %d == %d\n", (edge->srcVertex).lock()->data, (edge->dstVertex).lock()->data,
+                   edge->cost);
+        return;
     }
 
 }

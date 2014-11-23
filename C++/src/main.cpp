@@ -15,6 +15,7 @@
 void testStringFunctions();
 void testAtoi();
 void testGraph();
+void testGraphMST();
 
 int main(int argc, char* argv[]) {
 
@@ -26,7 +27,9 @@ int main(int argc, char* argv[]) {
     
    // std::string postfix = Practice::getPostfixFromInfix("((A-(B+C))*D)$(E+F)");
     //printf("%s", postfix.c_str());
-    testGraph();
+    //testGraph();
+    
+    testGraphMST();
     
     return 0;
 }
@@ -80,12 +83,28 @@ void testAtoi() {
 
 void testGraph() {
     DS::Graph *graph = new DS::Graph();
-    graph->addEdge(1, 2, 1);
-    graph->addEdge(2, 3, 1);
-    graph->addEdge(2, 4, 1);
-    graph->addEdge(3, 4, 1);
-    graph->addEdge(4, 5, 1);
+    graph->addEdge(1, 2, 12);
+    graph->addEdge(1, 3, 4);
+    //graph->addEdge(1, 4, 3);
+   // graph->addEdge(2, 5, 6);
+   // graph->addEdge(2, 4, 3);
+    graph->addEdge(3, 2, 5);
+   // graph->addEdge(3, 5, 2);
+   // graph->addEdge(4, 6, 4);
+   // graph->addEdge(5, 6, 3);
     
     //graph->dfsTraversal();
-    graph->bfsTraversal();
+    //graph->bfsTraversal();
+    graph->findShortestPath(1, 2);
+}
+
+void testGraphMST() {
+    DS::Graph *graph = new DS::Graph();
+    graph->addEdge(0, 1, 10);
+    graph->addEdge(0, 2, 6);
+    graph->addEdge(0, 3, 5);
+    graph->addEdge(1, 3, 15);
+    graph->addEdge(2, 3, 4);
+    
+    graph->kruskalMST();
 }
