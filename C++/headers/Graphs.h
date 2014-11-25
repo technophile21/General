@@ -31,7 +31,8 @@ typedef struct Vertex {
 namespace DS {
     
     class Vertex;
-    typedef std::list<boost::shared_ptr<Vertex>> VerticesList;
+    typedef boost::shared_ptr<Vertex> VertexSharedPtr;
+    typedef std::list<VertexSharedPtr> VerticesList;
     typedef std::map<int, VerticesList::const_iterator> DataVertexMap;
     class Graph {
         
@@ -39,7 +40,7 @@ namespace DS {
         DataVertexMap _dataVertexMap;
         
         //TODO: Need some design to have this function internal only and not exposed to client
-        boost::shared_ptr<Vertex> addAndGetVertex(int data);
+        VertexSharedPtr addAndGetVertex(int data);
     public:
         Graph();
         ~Graph();
