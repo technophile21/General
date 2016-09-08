@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7204C0A01AB1379A00ADFD37 /* AddBinary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7204C09F1AB1379A00ADFD37 /* AddBinary.cpp */; };
+		7204C0A21AB1382B00ADFD37 /* LinkTreeNodes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7204C0A11AB1382B00ADFD37 /* LinkTreeNodes.cpp */; };
+		7209BAC51AFE5660009A280D /* Leet_Practice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7209BAC41AFE5660009A280D /* Leet_Practice.cpp */; };
+		721110211A56CDCE007A5113 /* Microsoft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7211101F1A56CDCE007A5113 /* Microsoft.cpp */; };
+		726B2DC31D1FA6ED00EC2A1E /* GeeksForGeeks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 726B2DC21D1FA6ED00EC2A1E /* GeeksForGeeks.cpp */; };
+		726C66621B1B137800344A01 /* trie.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 726C66611B1B137800344A01 /* trie.cpp */; };
+		7277078F1D16BE3C004377A1 /* algorithms.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7277078E1D16BE3C004377A1 /* algorithms.cpp */; };
 		72FE80BC1A17E76E00672D8F /* Exceptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72FE80B31A17E76E00672D8F /* Exceptions.cpp */; };
 		72FE80BD1A17E76E00672D8F /* Graphs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72FE80B41A17E76E00672D8F /* Graphs.cpp */; };
 		72FE80BE1A17E76E00672D8F /* Leet_Word_Ladder-II.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72FE80B51A17E76E00672D8F /* Leet_Word_Ladder-II.cpp */; };
@@ -31,7 +38,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7204C09F1AB1379A00ADFD37 /* AddBinary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AddBinary.cpp; path = ../../LeetCode/AddBinary.cpp; sourceTree = "<group>"; };
+		7204C0A11AB1382B00ADFD37 /* LinkTreeNodes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LinkTreeNodes.cpp; path = ../../LeetCode/LinkTreeNodes.cpp; sourceTree = "<group>"; };
+		7209BAC41AFE5660009A280D /* Leet_Practice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Leet_Practice.cpp; sourceTree = "<group>"; };
+		7209BAC61AFE69C3009A280D /* Leet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Leet.h; path = ../headers/Leet.h; sourceTree = "<group>"; };
+		7211101E1A56CDBF007A5113 /* Microsoft.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Microsoft.h; sourceTree = "<group>"; };
+		7211101F1A56CDCE007A5113 /* Microsoft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Microsoft.cpp; sourceTree = "<group>"; };
 		721BC39919424DB000F4DB40 /* Practice */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Practice; sourceTree = BUILT_PRODUCTS_DIR; };
+		726B2DC21D1FA6ED00EC2A1E /* GeeksForGeeks.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GeeksForGeeks.cpp; sourceTree = "<group>"; };
+		726B2DC41D1FA6F300EC2A1E /* GeeksForGeeks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeeksForGeeks.h; sourceTree = "<group>"; };
+		726C66601B1B136000344A01 /* trie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = trie.h; sourceTree = "<group>"; };
+		726C66611B1B137800344A01 /* trie.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = trie.cpp; sourceTree = "<group>"; };
+		7277078E1D16BE3C004377A1 /* algorithms.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = algorithms.cpp; sourceTree = "<group>"; };
+		727707901D16BE43004377A1 /* algorithms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = algorithms.h; sourceTree = "<group>"; };
+		729EA57E1D1E9145003F7298 /* types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
 		72FE80A91A17E76600672D8F /* CommonHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonHeaders.h; sourceTree = "<group>"; };
 		72FE80AA1A17E76600672D8F /* Exceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exceptions.h; sourceTree = "<group>"; };
 		72FE80AB1A17E76600672D8F /* Graphs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Graphs.h; sourceTree = "<group>"; };
@@ -63,6 +83,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7204C09E1AB1377B00ADFD37 /* LeetCode */ = {
+			isa = PBXGroup;
+			children = (
+				7204C09F1AB1379A00ADFD37 /* AddBinary.cpp */,
+				72FE80B51A17E76E00672D8F /* Leet_Word_Ladder-II.cpp */,
+				7204C0A11AB1382B00ADFD37 /* LinkTreeNodes.cpp */,
+				7209BAC41AFE5660009A280D /* Leet_Practice.cpp */,
+				7209BAC61AFE69C3009A280D /* Leet.h */,
+			);
+			name = LeetCode;
+			sourceTree = "<group>";
+		};
 		721BC39019424DB000F4DB40 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +115,7 @@
 		72FE80A81A17E76600672D8F /* headers */ = {
 			isa = PBXGroup;
 			children = (
+				726B2DC41D1FA6F300EC2A1E /* GeeksForGeeks.h */,
 				72FE80A91A17E76600672D8F /* CommonHeaders.h */,
 				72FE80AA1A17E76600672D8F /* Exceptions.h */,
 				72FE80AB1A17E76600672D8F /* Graphs.h */,
@@ -90,8 +123,12 @@
 				72FE80AD1A17E76600672D8F /* postfix.h */,
 				72FE80AE1A17E76600672D8F /* Practice.h */,
 				72FE80AF1A17E76600672D8F /* Queue.h */,
+				727707901D16BE43004377A1 /* algorithms.h */,
 				72FE80B01A17E76600672D8F /* stacks.h */,
 				72FE80B11A17E76600672D8F /* StacksImpl.h */,
+				7211101E1A56CDBF007A5113 /* Microsoft.h */,
+				726C66601B1B136000344A01 /* trie.h */,
+				729EA57E1D1E9145003F7298 /* types.h */,
 			);
 			name = headers;
 			path = ../headers;
@@ -100,15 +137,19 @@
 		72FE80B21A17E76E00672D8F /* src */ = {
 			isa = PBXGroup;
 			children = (
+				7204C09E1AB1377B00ADFD37 /* LeetCode */,
 				72FE80B31A17E76E00672D8F /* Exceptions.cpp */,
+				726B2DC21D1FA6ED00EC2A1E /* GeeksForGeeks.cpp */,
 				72FE80B41A17E76E00672D8F /* Graphs.cpp */,
-				72FE80B51A17E76E00672D8F /* Leet_Word_Ladder-II.cpp */,
 				72FE80B61A17E76E00672D8F /* main.cpp */,
+				7277078E1D16BE3C004377A1 /* algorithms.cpp */,
 				72FE80B71A17E76E00672D8F /* postfix.cpp */,
 				72FE80B81A17E76E00672D8F /* Queue.cpp */,
 				72FE80B91A17E76E00672D8F /* stacks.cpp */,
 				72FE80BA1A17E76E00672D8F /* string_functions.cpp */,
 				72FE80BB1A17E76E00672D8F /* swap2numbers.cpp */,
+				7211101F1A56CDCE007A5113 /* Microsoft.cpp */,
+				726C66611B1B137800344A01 /* trie.cpp */,
 			);
 			name = src;
 			path = ../src;
@@ -166,13 +207,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				72FE80C41A17E76E00672D8F /* swap2numbers.cpp in Sources */,
+				7204C0A21AB1382B00ADFD37 /* LinkTreeNodes.cpp in Sources */,
 				72FE80BE1A17E76E00672D8F /* Leet_Word_Ladder-II.cpp in Sources */,
 				72FE80BD1A17E76E00672D8F /* Graphs.cpp in Sources */,
+				7204C0A01AB1379A00ADFD37 /* AddBinary.cpp in Sources */,
 				72FE80BF1A17E76E00672D8F /* main.cpp in Sources */,
 				72FE80C21A17E76E00672D8F /* stacks.cpp in Sources */,
+				726B2DC31D1FA6ED00EC2A1E /* GeeksForGeeks.cpp in Sources */,
 				72FE80C31A17E76E00672D8F /* string_functions.cpp in Sources */,
+				7277078F1D16BE3C004377A1 /* algorithms.cpp in Sources */,
 				72FE80C11A17E76E00672D8F /* Queue.cpp in Sources */,
+				726C66621B1B137800344A01 /* trie.cpp in Sources */,
 				72FE80C01A17E76E00672D8F /* postfix.cpp in Sources */,
+				721110211A56CDCE007A5113 /* Microsoft.cpp in Sources */,
+				7209BAC51AFE5660009A280D /* Leet_Practice.cpp in Sources */,
 				72FE80BC1A17E76E00672D8F /* Exceptions.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

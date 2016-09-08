@@ -1,0 +1,16 @@
+
+.DS_Store
+
+*.xcworkspacedata
+
+*.xcuserstate
+
+*.xcsettings
+
+*.xcbkptlist
+
+*.xcscheme
+
+*.o
+
+*.xcuserdatad
