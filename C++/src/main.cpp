@@ -11,14 +11,22 @@
 #include "Practice.h"
 #include <vector>
 #include "Graphs.h"
+#include "Microsoft.h"
+#include "Leet.h"
+#include "trie.h"
+#include "algorithms.h"
 
 void testStringFunctions();
 void testAtoi();
 void testGraph();
 void testGraphMST();
+int findDigits();
+void testTrie();
+void testIncreasingTriplet();
 
 int main(int argc, char* argv[]) {
 
+    
     //testStringFunctions();
     //testAtoi();
     
@@ -29,14 +37,92 @@ int main(int argc, char* argv[]) {
     //printf("%s", postfix.c_str());
     //testGraph();
     
-    testGraphMST();
+    //testGraphMST();
     
-    return 0;
+    //findDigits();
+    
+   // std::string str= "Hello World";
+    //removeDup(str);
+    
+   /* int a[11] = { 1, 1, 1, 1, 1, 1, 0, 1, 1,1,1}; //{8,12,18,22,25,30,37,40,49,75,5};
+    int foundIdx = findEleRotatedSortedArr(a, 11, 0);
+    printf("Found element at %d", foundIdx);*/
+    
+  //  string result = Solution::fractionToDecimal(-2147483648, -1);
+     //   string result = Solution::fractionToDecimal(1,99);
+  //  printf("\nResult: %s\n", result.c_str());
+    
+   /* vector<int> input;
+    input.push_back(1);
+    input.push_back(2);
+    input.push_back(1);
+    input.push_back(2);
+    input.push_back(1);
+    Solution::permuteUnique(input); */
+    
+    
+   /* vector<int> input;
+    input.push_back(-3);
+    input.push_back(4);
+    input.push_back(-1);
+    input.push_back(-1);
+    int res = Solution::firstMissingPositive(input);
+    printf("\nResult: %d\n", res); */
+    
+  /*  vector<string> strs;
+    strs.push_back("abcdefghij");
+    strs.push_back("");
+    strs.push_back("abcdefgdsfds");
+    strs.push_back("fbcdfvfsij");
+
+    string result = Solution::longestCommonPrefix(strs);
+    printf("\nResult: %s\n", result.c_str()); */
+    
+   /* string inputStr = "aaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeffffffffffgggggggggghhhhhhhhhhiiiiiiiiiijjjjjjjjjjkkkkkkkkkkllllllllllmmmmmmmmmmnnnnnnnnnnooooooooooppppppppppqqqqqqqqqqrrrrrrrrrrssssssssssttttttttttuuuuuuuuuuvvvvvvvvvvwwwwwwwwwwxxxxxxxxxxyyyyyyyyyyzzzzzzzzzzyyyyyyyyyyxxxxxxxxxxwwwwwwwwwwvvvvvvvvvvuuuuuuuuuuttttttttttssssssssssrrrrrrrrrrqqqqqqqqqqppppppppppoooooooooonnnnnnnnnnmmmmmmmmmmllllllllllkkkkkkkkkkjjjjjjjjjjiiiiiiiiiihhhhhhhhhhggggggggggffffffffffeeeeeeeeeeddddddddddccccccccccbbbbbbbbbbaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeffffffffffgggggggggghhhhhhhhhhiiiiiiiiiijjjjjjjjjjkkkkkkkkkkllllllllllmmmmmmmmmmnnnnnnnnnnooooooooooppppppppppqqqqqqqqqqrrrrrrrrrrssssssssssttttttttttuuuuuuuuuuvvvvvvvvvvwwwwwwwwwwxxxxxxxxxxyyyyyyyyyyzzzzzzzzzzyyyyyyyyyyxxxxxxxxxxwwwwwwwwwwvvvvvvvvvvuuuuuuuuuuttttttttttssssssssssrrrrrrrrrrqqqqqqqqqqppppppppppoooooooooonnnnnnnnnnmmmmmmmmmmllllllllllkkkkkkkkkkjjjjjjjjjjiiiiiiiiiihhhhhhhhhhggggggggggffffffffffeeeeeeeeeeddddddddddccccccccccbbbbbbbbbbaaaa";
+    string result = Solution::longestPalindrome(inputStr);
+    printf("\nResult: %s\n", result.c_str());*/
+    
+    /*vector<Interval> input;
+    input.push_back(*(new Interval(4,5)));
+    input.push_back(*(new Interval(2,10)));
+    input.push_back(*(new Interval(5,6)));
+    input.push_back(*(new Interval(15,18)));
+    vector<Interval> result = Solution::merge(input); */
+    
+    //testTrie();
+    
+    
+    //testIncreasingTriplet();
+    
+   // Algorithms::test::testLCS();
+    
+   // Solution::test::testThreeSum();
+    
+    //Solution::test::testSortedListToBST();
+    
+    //Solution::test::testIntegerBreak();
+    
+    Solution::test::testSurroundingRegions();
+    
+   // return 0;
+}
+
+void testTrie() {
+    Trie* trie = new Trie();
+    trie->insertWord("hello");
+    trie->insertWord("hell");
+    trie->insertWord("world");
+    trie->insertWord("worth");
+    trie->insertWord("heading");
+    trie->insertWord("he");
+    trie->insertWord("won");
+    
+    trie->printAllWords();
 }
 
 void testStringFunctions() {
 
-    char *a = "Hello World";
+    const char *a = "Hello World";
     
     size_t len = Practice::strlen(a);
   //  size_t lenNull = Practice::strlen(NULL);
@@ -49,8 +135,8 @@ void testStringFunctions() {
     Practice::strcpy(c, a);
     
     
-    char *d = "Hello World";
-    char* e = "Good Bye";
+    const char *d = "Hello World";
+    const char* e = "Good Bye";
     
     printf("Comparison results: %d - %d - %d - %d \n", Practice::strcmp(a, d), Practice::strcmp(e, d), Practice::strcmp(NULL, NULL), Practice::strcmp(e,c));
     
@@ -118,4 +204,61 @@ void testGraphMST() {
     
     graph->kruskalMST();
     graph->primMST();
+}
+
+int findDigits() {
+    using namespace std;
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+    int noTest;
+    cin>>noTest;
+    
+    std::vector<long long int> testCaseVector;
+    for(int i = 0; i < noTest; ++i) {
+        long long int x;
+        cin>>x;
+        testCaseVector.push_back(x);
+    }
+    cout<<50;
+    for(int i = 0; i < noTest; ++i) {
+        int arr[10] = {0};
+        int count = 0;
+        long long int no = testCaseVector[i];
+        long long int tmpNo = no;
+        while(tmpNo > 0) {
+            int rem = tmpNo % 10;
+            if(!rem) {
+                tmpNo /= 10;
+                continue;
+            }
+            if(!arr[rem]) {
+                if((no / rem) == 0 ) {
+                    arr[rem] = 1;
+                    count++;
+                }
+            } else
+                count++;
+        }
+        cout<<count<<endl;
+    }
+    return 0;
+}
+
+void testIncreasingTriplet() {
+   // int arr[] = {1,2};
+   // int arr[] = {1,2, 3,4,5};
+   // int arr[] = {5,4,3,2,1};
+   // int arr[] = {6,5,2,9,7,8};
+   // int arr[] = {1,5,4,3,2};
+   // int arr[] = {7,5,2,8,4,3};
+    
+    //Failed test case
+    int arr[] = {1, 2, -10, -8, -7};
+    
+    vector<int> nums(arr, arr + sizeof(arr) / sizeof(int));
+
+    bool result = Solution::increasingTriplet(nums);
+    if(result)
+        cout<<"True"<<endl;
+    else
+        cout<<"False"<<endl;
 }
