@@ -34,6 +34,8 @@ namespace DS {
     typedef boost::shared_ptr<Vertex> VertexSharedPtr;
     typedef std::list<VertexSharedPtr> VerticesList;
     typedef std::map<int, VerticesList::const_iterator> DataVertexMap;
+    
+    
     class Graph {
         
         VerticesList _verticesList;
